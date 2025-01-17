@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.modal_detail .ant-modal-content {
+    @apply !p-0 !bg-blue-50;
+}
+
+.modal_detail .ant-modal{
+    @apply !top-4;
+}
+
+.modal_detail .ant-modal-title {
+    @apply px-[16px] py-[20px] bg-gradient-to-r from-primary to-secondary !text-white !rounded-t !shadow-md;
+}
+
+.modal_detail .ant-modal-body {
+    @apply px-[14px] py-[8px];
+}
+
+.modal_detail.ant-modal .ant-modal-close {
+    @apply !text-white !cursor-pointer
+}
+
+.ant-card,
+.ant-card .ant-card-body{
+    @apply !cursor-pointer
+}

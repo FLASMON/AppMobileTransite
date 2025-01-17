@@ -12,6 +12,8 @@ import {
     faCamera,
     faArrowDownWideShort,
     faSearch,
+    faDownload,
+    faFilePdf,
 } from "@fortawesome/free-solid-svg-icons";
 
 import {} from '@fortawesome/free-brands-svg-icons';
@@ -29,4 +31,6 @@ library.add(
     faCamera,
     faArrowDownWideShort,
     faSearch,
+    faDownload,
+    faFilePdf,
 );

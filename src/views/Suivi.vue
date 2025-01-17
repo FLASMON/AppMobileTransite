@@ -4,9 +4,11 @@ import ButtonRetour from "../components/ButtonRetour.vue";
 </script>
 
 <template>
-  <a-layout class="min-h-screen bg-gray-100 !py-16">
-    <ButtonRetour title="Interface Suivi"/>
-    <a-layout-content class="p-6 max-w-screen-2xl mx-auto w-full">
+  <a-layout class="min-h-screen bg-secondary pt-16">
+
+    <ButtonRetour title="Liste des dossier"/>
+
+    <a-layout-content class="!p-6 max-w-screen-2xl bg-gray-100 mx-auto w-full rounded-t-3xl">
       <a-card class="w-full">
         <p>Contenu de la caméra...</p>
       </a-card>

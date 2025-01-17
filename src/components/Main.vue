@@ -6,7 +6,7 @@ import MainAvatar from "./Layouts/MainAvatar.vue";
 <template>
   <a-layout>
     <a-layout-content class="relative w-full h-screen max-w-screen-sm mx-auto my-auto">
-      <div class=" text-white text-left p-8 bg-gradient-to-r from-blue-500 to-blue-800 shadow-md rounded-b-[40px]">
+      <div class=" text-white text-left p-8 bg-gradient-to-r from-primary to-secondary shadow-md rounded-b-[40px]">
         <div class="flex items-center justify-between w-full mb-8">
           <a-tooltip title="search">
             <a-button  shape="circle" size="large">

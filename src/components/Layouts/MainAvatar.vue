@@ -5,9 +5,8 @@
   >
     <!-- Avatar cliquable -->
     <a-avatar
-        :style="{ backgroundColor: user.color }"
         :size="40"
-        class="cursor-pointer"
+        class="bg-orange cursor-pointer"
     >
       {{ user.name.substring(0, 1) }}
     </a-avatar>
@@ -18,9 +17,8 @@
         <!-- Section utilisateur -->
         <div class="flex flex-col px-2 py-2 text-sm justify-center border-b">
           <a-avatar
-              :style="{ backgroundColor: user.color }"
               :size="70"
-              class="mx-auto mt-3"
+              class="mx-auto mt-3 bg-primary"
           >
             <span class="text-3xl relative top-1">{{ user.name.substring(0, 1) }}</span>
           </a-avatar>
@@ -52,11 +50,9 @@
 
 <script setup>
 
-// Données utilisateur (exemple)
 const user = {
   name: "John Doe",
   email: "john.doe@example.com",
-  color: "#3498db",
 };
 
 // Fonction de navigation

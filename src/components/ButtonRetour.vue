@@ -16,7 +16,7 @@ const goBack = () => {
 </script>
 
 <template>
-  <a-layout-header class="fixed z-10 top-0 w-full !border-none shadow-md !bg-gradient-to-r from-blue-500 to-blue-800 !px-4">
+  <a-layout-header class="fixed z-10 top-0 w-full !border-none !bg-transparent !px-4">
     <div class="max-w-screen-2xl mx-auto flex items-center justify-between h-full">
       <div class="flex items-center">
         <a-button
@@ -24,9 +24,9 @@ const goBack = () => {
             @click="goBack"
             class="!text-white mr-4 !cursor-pointer"
         >
-          <font-awesome-icon icon="fa-solid fa-arrow-left" />
+          <font-awesome-icon icon="fa-solid fa-arrow-left" class="text-base" />
         </a-button>
-        <h1 class="text-white text-xl m-0">{{ title }}</h1>
+        <h1 class="text-white text-xl">{{ title }}</h1>
       </div>
     </div>
   </a-layout-header>

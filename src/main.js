@@ -6,10 +6,12 @@ import "ant-design-vue/dist/reset.css";
 import router from "./routes/router.js";
 import './Icons/icons.js'
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import { PerfectScrollbarPlugin } from 'vue3-perfect-scrollbar';
 
 
 const app = createApp(App);
 app.component("font-awesome-icon", FontAwesomeIcon)
 app.use(Antdv)
 app.use(router)
+app.use(PerfectScrollbarPlugin)
 app.mount("#app")
