@@ -5,7 +5,6 @@ import Camera from "../views/Camera.vue";
 import Main from "../components/Main.vue";
 import Navire from "../views/Navire.vue";
 
-// Définition des routes
 const routes = [
     {
       path: '/',
@@ -35,12 +34,11 @@ const routes = [
       name: 'Camera',
       meta: { key: 'Camera' },
       component: Camera,
-    }
+    },
 ];
 
-// Création et exportation du routeur
 const router = createRouter({
-  history: createWebHistory(), // Utilisation d'un historique propre
+  history: createWebHistory(),
   routes,
 });
 
