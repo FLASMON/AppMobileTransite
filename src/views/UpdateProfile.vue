@@ -29,24 +29,23 @@ const handleLogin = () => {
 
         <a-form layout="vertical" @submit.prevent="handleLogin">
 
-          <a-form-item label="Login" required>
-            <a-input size="large" v-model="loginForm.username" placeholder="Login"/>
+          <a-form-item label="Nom d'utilisateur" required>
+            <a-input size="large" v-model="loginForm.username" placeholder="Entrez votre nom d'utilisateur"/>
           </a-form-item>
 
 
           <a-form-item label="Mot de passe" required>
-            <a-input-password size="large" v-model="loginForm.password" placeholder="Mot de passe" class=""/>
+            <a-input-password size="large" v-model="loginForm.password" placeholder="Entrez un nouveau mot de passe" class=""/>
           </a-form-item>
 
-          <!-- Checkbox "Se souvenir de moi" -->
-          <a-form-item>
-            <a-checkbox v-model="loginForm.remember">Se souvenir de moi</a-checkbox>
+          <a-form-item label="Confirmer le mot de passe" required>
+            <a-input-password size="large" v-model="loginForm.password" placeholder="Confirmez votre mot de passe" class=""/>
           </a-form-item>
 
           <a-form-item>
             <a-button size="large" block @click="handleLogin"
-                      class="!text-white bg-primary hover:bg-secondary !border-none transition duration-300">
-              Se connecter
+                      class="!text-white !text-lg bg-primary hover:bg-secondary !border-none transition duration-300">
+              Sauvegarder les modifications
             </a-button>
           </a-form-item>
         </a-form>
@@ -56,7 +55,7 @@ const handleLogin = () => {
     <div class="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-primary to-secondary z-0">
       <div
           class="w-full h-full bg-center bg-cover opacity-15"
-          style="background-image: url('/img/transite.png');"
+          style="background-image: url('/img/navire.png');"
       ></div>
     </div>
   </a-layout>
