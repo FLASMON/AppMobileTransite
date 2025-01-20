@@ -4,12 +4,13 @@ import Suivi from "../views/Suivi.vue";
 import Camera from "../views/Camera.vue";
 import Main from "../components/Main.vue";
 import Navire from "../views/Navire.vue";
+import UpdateProfile from "../views/UpdateProfile.vue";
+import Login from "../views/Login.vue";
 
-// Définition des routes
 const routes = [
     {
       path: '/',
-      component: Main,
+      component: Login,
       name: 'Main',
     },
     {
@@ -35,12 +36,11 @@ const routes = [
       name: 'Camera',
       meta: { key: 'Camera' },
       component: Camera,
-    }
+    },
 ];
 
-// Création et exportation du routeur
 const router = createRouter({
-  history: createWebHistory(), // Utilisation d'un historique propre
+  history: createWebHistory(),
   routes,
 });
 
