@@ -14,6 +14,8 @@ import {
     faSearch,
     faDownload,
     faFilePdf,
+    faCircleCheck,
+    faCircleXmark,
 } from "@fortawesome/free-solid-svg-icons";
 
 import {} from '@fortawesome/free-brands-svg-icons';
@@ -33,4 +35,6 @@ library.add(
     faSearch,
     faDownload,
     faFilePdf,
+    faCircleCheck,
+    faCircleXmark,
 );
