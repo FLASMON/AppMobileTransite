@@ -37,7 +37,7 @@ const navires = ref([
 const fetchNavire = async () => {
 
     try {
-        const response = await axiosInstance.get('navire/fetchall', { params: filtre.value });
+        const response = await axiosInstance.get(pathAPI.navire.fetchALL, { params: filtre.value });
         navires.value = response.data.data.map(item => ({
             title: 'navire',
             name: (item.nom_navire),

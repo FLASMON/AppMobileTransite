@@ -1,7 +1,11 @@
 const pathAPI = {
     navire: {
-        fetchALL: 'navire/getall'
+        fetchALL: 'navire/fetchall'
     },
+    login: {
+        seconnect: 'users/loginclient',
+        logout: 'users/logout'
+    }
 
 }
 
