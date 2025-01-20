@@ -9,8 +9,13 @@ import Login from "../views/Login.vue";
 
 const routes = [
     {
-      path: '/',
+      path: '/login',
       component: Login,
+      name: 'Login',
+    },
+    {
+      path: '/',
+      component: Main,
       name: 'Main',
     },
     {

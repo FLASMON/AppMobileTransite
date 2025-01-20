@@ -16,6 +16,7 @@ import {
     faFilePdf,
     faCircleCheck,
     faCircleXmark,
+    faBars,
 } from "@fortawesome/free-solid-svg-icons";
 
 import {} from '@fortawesome/free-brands-svg-icons';
@@ -37,4 +38,5 @@ library.add(
     faFilePdf,
     faCircleCheck,
     faCircleXmark,
+    faBars
 );
