@@ -35,6 +35,7 @@ class LocalStorageService {
             return null;
         }
 
+        console.log(item)
         return item.value;
     }
 

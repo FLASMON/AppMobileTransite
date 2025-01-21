@@ -15,7 +15,7 @@ defineEmits(['update:modelValue']);
       @update:value="$emit('update:modelValue', $event)"
       size="large"
       type="default"
-      placeholder="Rechercher des applications..."
+      placeholder="Recherche..."
       class="px-5 w-full rounded-full"
   >
     <template #suffix>

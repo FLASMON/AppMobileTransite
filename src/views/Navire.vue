@@ -6,6 +6,7 @@ import NavireDetailsModal from "../components/Modal/NavireDetailsModal.vue";
 import CardNavire from "../components/Card/CardNavire.vue";
 import axiosInstance from "../config/AxiosInstance.js";
 import debounce from 'lodash/debounce'
+import pathAPI from "../utils/pathAPI/pathAPI.js";
 
 const search = ref('');
 const isModalVisible = ref(false);
@@ -18,32 +19,28 @@ const filtre = ref({
     sort: 'date_arriver|asc',
     page: '1',
     per_page: '20',
+    client_id: JSON.parse(localStorage.getItem('token_client')).value,
 })
 const navires = ref([
     {
-        title: 'navire',
-        name: 'Clipper Trent',
-        date: '13/01/25',
-        blNumbers: ['HKG400227200', '24EX11215845 groupage', 'mf-022', 'mf-023', 'mf-024']
-    },
-    {
-        title: 'navire',
-        name: 'Ocean Voyager',
-        date: '14/01/25',
-        blNumbers: ['mf-025', 'mf-026', 'mf-027', 'mf-028']
+        title: '',
+        name: '',
+        date: '',
+        bl_details: []
     }
 ]);
 
 const fetchNavire = async () => {
 
     try {
-        const response = await axiosInstance.get(pathAPI.navire.fetchALL, { params: filtre.value });
-        navires.value = response.data.data.map(item => ({
-            title: 'navire',
-            name: (item.nom_navire),
-            date: (item.date_arriver_formatted),
-            blNumbers: item.num_bl ? item.num_bl.split(';') : [],
-        }));
+        const response = await axiosInstance.get(pathAPI.navirebl.fetchAll, { params: filtre.value });
+        navires.value = response.data.data;
+        // navires.value = response.data.data.map(item => ({
+        //     title: 'navire',
+        //     name: (item.nom_navire),
+        //     date: (item.date_arriver_formatted),
+        //     blNumbers: item.bl_details ? item.bl_details.split(';') : [],
+        // }));
 
     } catch (e) {
        console.log(e)
@@ -73,7 +70,7 @@ onMounted( () => {
 
 <template>
     <a-layout class="min-h-screen bg-secondary pt-16">
-        <ButtonRetour title="Liste des dossier"/>
+        <ButtonRetour title="Liste Navire"/>
 
 
         <a-layout-content class="!p-6 max-w-screen-2xl bg-gray-100 mx-auto w-full rounded-t-3xl">
@@ -89,8 +86,7 @@ onMounted( () => {
                     :key="navire.name"
                     :name="navire.name"
                     :date="navire.date"
-                    :bl-numbers="navire.blNumbers"
-                    @click="handleCardClick(navire.name)"
+                    :bl-numbers="navire.bl_details"
                     :class="selectedCardNavire === navire.name ? 'border-blue-500 shadow-lg' : ''"
                 />
             </div>
