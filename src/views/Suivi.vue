@@ -2,8 +2,8 @@
 import {ref} from 'vue';
 import ButtonRetour from "../components/ButtonRetour.vue";
 import SearchBar from "../components/SearchBar.vue";
-import DossierDetailsModal from "../components/Modal/DossierDetailsModal.vue";
 import CardSuiv from "../components/Card/CardSuiv.vue";
+import SuiviDetailsModal from "../components/Modal/SuiviDetailsModal.vue";
 
 const search = ref('');
 const isModalVisible = ref(false);
@@ -62,12 +62,11 @@ function handleModalClose() {
             statut=""/>
       </div>
 
-      <DossierDetailsModal
+      <SuiviDetailsModal
           v-if="selectedCardNavire"
           :open="isModalVisible"
           :navire="selectedCardNavire"
-          @close="handleModalClose"
-      />
+          @close="handleModalClose"/>
     </a-layout-content>
   </a-layout>
 </template>
