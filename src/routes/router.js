@@ -37,9 +37,9 @@ const routes = [
       component: Suivi,
     },
     {
-      path: '/camera',
-      name: 'Camera',
-      meta: { key: 'Camera' },
+      path: '/ScanQR',
+      name: 'ScanQR',
+      meta: { key: 'ScanQR' },
       component: Camera,
     },
 ];
