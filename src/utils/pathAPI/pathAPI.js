@@ -13,6 +13,9 @@ const pathAPI = {
     navirebl: {
         fetchAll: 'navirebl/fetchall'
     },
+    dossier_detail: {
+        confirm_receipt: 'suivieenlevementdetail/confirmreceiptmsg'
+    }
 }
 
 export default pathAPI;
