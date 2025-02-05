@@ -1,72 +1,93 @@
 <script setup>
-import {ref} from 'vue';
+import {ref, onMounted} from 'vue';
 import ButtonRetour from "../components/ButtonRetour.vue";
 import SearchBar from "../components/SearchBar.vue";
 import CardSuiv from "../components/Card/CardSuiv.vue";
 import SuiviDetailsModal from "../components/Modal/SuiviDetailsModal.vue";
+import axiosInstance from "../config/AxiosInstance.js";
+import pathAPI from "../utils/pathAPI/pathAPI.js";
+import debounce from "lodash/debounce.js";
+import {useI18n} from 'vue-i18n';
+const {t} = useI18n();
 
 const search = ref('');
 const isModalVisible = ref(false);
 const selectedCardNavire = ref(null);
+const elementDetails= ref([]);
 
-const navires = [
-  {
-    statut: 'En cours',
-    client: 'MAISON SAMAT',
-    date: '13/01/25',
-    blNumbers: 'HKG400227200',
-    nom_navire: 'MSC SABRINA III'
-  },
-  {
-    statut: 'En cours',
-    client: 'MAISON SAMAT',
-    date: '13/01/25',
-    blNumbers: 'HKG400227200',
-    nom_navire: 'MSC SABRINA III'
-  },
-];
+const navires = ref([]);
 
-function handleCardClick(navire) {
-  selectedCardNavire.value = navire;
-  isModalVisible.value = true;
+const filtre = ref({
+    filter: '',
+    date_debut: '',
+    date_fin: '',
+    sort: 'date_enlevement|asc',
+    page: '1',
+    per_page: '20',
+    client_id: JSON.parse(localStorage.getItem('token_client')).value,
+})
+
+
+const fetchAll = async () => {
+
+    try {
+        const response = await axiosInstance.get(pathAPI.suivieenlevement.fetchAll, { params: filtre.value });
+        navires.value = response.data.data;
+    } catch (e) {
+        console.log(e)
+    } finally {
+
+    }
+}
+
+async function handleCardClick(id) {
+    const link = pathAPI.suivieenlevement.detail+"/"+id
+    const response = await axiosInstance.get(link);
+    elementDetails.value = response.data.element;
+
+    selectedCardNavire.value = id;
+    isModalVisible.value = true;
 }
 
 function handleModalClose() {
-  isModalVisible.value = false;
-  selectedCardNavire.value = null;
+    isModalVisible.value = false;
+    selectedCardNavire.value = null;
 }
 
+const debouncedFetchNavire = debounce(fetchAll, 300);
+
+onMounted(() => {
+    fetchAll();
+})
 </script>
 
 <template>
-  <a-layout class="min-h-screen bg-secondary pt-16">
+    <a-layout class="min-h-screen bg-secondary pt-16">
 
-    <ButtonRetour title="Liste des suivie enlèvement"/>
+        <ButtonRetour :title="t('suivie.list_suivie_enlevement')"/>
 
-    <a-layout-content class="!p-6 max-w-screen-2xl bg-gray-100 mx-auto w-full rounded-t-3xl">
+        <a-layout-content class="!p-6 max-w-screen-2xl bg-gray-100 mx-auto w-full rounded-t-3xl">
 
-      <div class="mb-12">
-        <SearchBar v-model="search"/>
-      </div>
+            <div class="mb-12">
+                <SearchBar v-model="filtre.filter" @input="debouncedFetchNavire"/>
+            </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
-        <CardSuiv
-            v-for="navire in navires"
-            :statut="navire.statut"
-            :client="navire.client"
-            :date="navire.date"
-            :bl-numbers="navire.blNumbers"
-            :nom-navire="navire.nom_navire"
-            @click="handleCardClick(navire.client)"
-            :class="selectedCardNavire === navire.client ? 'border-amber-200 shadow-lg' : ''"
-            statut=""/>
-      </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
+                <CardSuiv
+                    v-for="navire in navires"
+                    :date="navire.date_enlevement_formatted"
+                    :nom-navire="navire.nom_navire"
+                    @click="handleCardClick(navire.id)"
+                    :class="selectedCardNavire === navire.id ? 'border-amber-200 shadow-lg' : ''"
+                    statut=""/>
+            </div>
 
-      <SuiviDetailsModal
-          v-if="selectedCardNavire"
-          :open="isModalVisible"
-          :navire="selectedCardNavire"
-          @close="handleModalClose"/>
-    </a-layout-content>
-  </a-layout>
+            <SuiviDetailsModal
+                v-if="selectedCardNavire"
+                :open="isModalVisible"
+                :navire="selectedCardNavire"
+                :elements="elementDetails"
+                @close="handleModalClose"/>
+        </a-layout-content>
+    </a-layout>
 </template>

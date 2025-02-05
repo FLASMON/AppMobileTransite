@@ -8,13 +8,18 @@ const pathAPI = {
     },
     dossier: {
         fetchAll: 'dossier/fetchall',
-        get: 'dossier/get'
+        get: 'dossier/get',
+        getparbl: 'dossier/getparbl'
     },
     navirebl: {
         fetchAll: 'navirebl/fetchall'
     },
     dossier_detail: {
         confirm_receipt: 'suivieenlevementdetail/confirmreceiptmsg'
+    },
+    suivieenlevement: {
+        fetchAll: 'suivieenlevement/fetchall',
+        detail: 'suivieenlevementdetail/getbysuivieenlevement'
     }
 }
 

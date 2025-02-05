@@ -42,14 +42,17 @@ const handleLogin = async () => {
     <a-layout class="relative min-h-screen pt-16 flex flex-col items-center justify-center px-6">
 
 
-        <div class="flex flex-col items-center justify-center mb-8 z-10">
+<!--        <div class="flex flex-col items-center justify-center mb-8 z-10">
             <a-avatar shape="circle" :size="80">
                 <font-awesome-icon class="me-0" icon="fa-solid fa-circle-user"/>
             </a-avatar>
             <span class="pt-2 text-3xl text-white capitalize"><strong class="font-bold">Trans'</strong>App</span>
-        </div>
+        </div>-->
 
         <a-layout-content class="!p-0 max-w-screen-2xl bg-gray-100 w-full rounded-t-3xl z-10">
+            <div class="flex flex-col items-center justify-center z-10">
+                <img src="../../public/img/logo.png" alt="Logo" class="w-[50%] h-[50%] object-cover rounded-full" />
+            </div>
             <a-card class="w-full">
                 <template #title>
                     <span class="text-lg font-medium uppercase">Connexion</span>
@@ -69,7 +72,7 @@ const handleLogin = async () => {
 
                     <!-- Checkbox "Se souvenir de moi" -->
                     <a-form-item>
-                        <a-checkbox v-model:checked="loginForm.remember">Se souvenir de moi {{loginForm}}</a-checkbox>
+                        <a-checkbox v-model:checked="loginForm.remember">Se souvenir de moi </a-checkbox>
 
                     </a-form-item>
 

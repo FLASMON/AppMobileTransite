@@ -1,8 +1,11 @@
 <script setup>
-import {defineProps, computed} from 'vue';
+import {defineProps, computed, ref} from 'vue';
 import SearchBar from "../SearchBar.vue";
 import {baseUrl} from "../../config/AxiosInstance.js";
+import debounce from "lodash/debounce.js";
+import {useI18n} from 'vue-i18n';
 
+const {t} = useI18n();
 const props = defineProps({
     open: {
         type: Boolean,
@@ -19,23 +22,28 @@ const props = defineProps({
 });
 
 const emit = defineEmits(['close']);
-
+const search = ref('')
 const handleClose = () => {
     emit('close');
 };
 
-const show_document = (nom_piece_jointe) => {
-    console.log(nom_piece_jointe);
-    if ((nom_piece_jointe != '' && nom_piece_jointe != null)) {
-        window.open(baseUrl + "/upload/dossier/" + nom_piece_jointe, '_blank');
-    }
-}
+const show_document = (nom_piece_jointe, name) => {
+    if (!nom_piece_jointe) return;
+
+    const paths = {
+        FACTURE: baseUrl + "/upload/dossier/facture/",
+        TRESORERIE: baseUrl + "/upload/dossier/tresorerie/",
+    };
+
+    const sub_link = paths[name] || baseUrl + "/upload/dossier/";
+    window.open(sub_link + nom_piece_jointe, '_blank');
+};
 
 const downloadZip = (id) => {
     window.open(baseUrl + "/dossier/downloadzip/" + id, '_blank');
 }
 
-const menuItems = [
+const menuItems = ref([
 
     {name: 'BL', icon: "fa-solid fa-file-pdf", dossier: props.Ouverture.ouverture_bl_attachement},
     {name: 'Surestarie', icon: "fa-solid fa-file-pdf", dossier: props.Ouverture.chargement_surestarie_attachement},
@@ -56,17 +64,28 @@ const menuItems = [
     {name: 'Overstays', icon: "fa-solid fa-file-pdf", dossier: props.Ouverture.chargement_onverstays_attachement},
     {name: 'EHDN', icon: "fa-solid fa-file-pdf", dossier: props.Ouverture.chargement_EHDN_attachament},
     {name: 'Environnement', icon: "fa-solid fa-file-pdf", dossier: props.Ouverture.chargement_environnement_attachement},
+    {name: 'Gate', icon: "fa-solid fa-file-pdf", dossier: props.Ouverture.chargement_gate_remis_attachement},
     {name: 'DC', icon: "fa-solid fa-file-pdf", dossier: props.Ouverture.liquidation_montant_doc_attachement},
     {name: 'AMENDE', icon: "fa-solid fa-file-pdf", dossier: props.Ouverture.liquidation_amende_attachement},
-    {name: 'FACTURE', icon: "fa-solid fa-file-pdf", dossier: props.Ouverture.facture_attachement},
-    {name: 'TRESORERIE', icon: "fa-solid fa-file-pdf", dossier: props.Ouverture.tresorerie_attachement},
-];
+    {name: 'FACTURE', icon: "fa-solid fa-file-pdf", dossier: props.Ouverture.facture},
+    {name: 'TRESORERIE', icon: "fa-solid fa-file-pdf", dossier: props.Ouverture.tresorerie},
+]);
+
+const filteredMenuItems = computed(() => {
+    return menuItems.value.filter(item =>
+        item.name.toLowerCase().includes(search.value.toLowerCase())
+    );
+});
+
+const debouncedSearch = debounce(() => {
+    filteredMenuItems.value;
+}, 300);
 </script>
 
 <template>
     <a-modal
         :open="open"
-        title="Suivie des documents"
+        :title="t('dossier_detail.suivie_document')"
         @cancel="handleClose"
         :footer="null"
         width="100%"
@@ -74,12 +93,12 @@ const menuItems = [
         class="modal_detail overflow-hidden"
     >
         <div class="mb-3">
-            <SearchBar v-model="search"/>
+            <SearchBar v-model="search" @input="debouncedSearch"/>
         </div>
 
         <div class="flex items-center justify-between">
-            <span class="text-base text-black font-medium">Liste des documents</span>
-            <a-tooltip title="Téléchargez tous les fichiers au format ZIP" placement="left">
+            <span class="text-base text-black font-medium">{{t('dossier_detail.list_document')}}</span>
+            <a-tooltip :title="t('dossier_detail.telecharger_tout')" placement="left">
                 <a-button type="default"
                           :disabled="Ouverture.id<=0" @click="downloadZip(Ouverture.id)"
                           class="!text-white bg-primary hover:bg-secondary !border-none transition duration-300">
@@ -87,7 +106,7 @@ const menuItems = [
                 </a-button>
             </a-tooltip>
         </div>
-        <div v-for="(item, index) in menuItems" :key="index">
+        <div v-for="(item, index) in filteredMenuItems" :key="index">
             <div
                 class="relative w-full group bg-white px-4 py-6 my-3 rounded-lg hover:shadow-md  border border-transparent hover:border-primary transition duration-300">
                 <div class="flex items-center justify-between flex-wrap gap-2 ml-8">
@@ -97,10 +116,10 @@ const menuItems = [
                             <font-awesome-icon v-show="!(item.dossier != '' && item.dossier !=null)"  class="me-0 text-base text-red-500" icon="fa-solid fa-circle-xmark"/>
                             <font-awesome-icon v-show="(item.dossier != '' && item.dossier !=null)" class="me-0 text-base text-green-600" icon="fa-solid fa-circle-check"/>
                         </a-space>
-                        <a-tooltip title="Téléchargez" placement="left">
+                        <a-tooltip :title="t('dossier_detail.telecharger')" placement="left">
                             <a-button type="default"
                                       :disabled="!(item.dossier != '' && item.dossier !=null)"
-                                      @click="show_document(item.dossier)"
+                                      @click="show_document(item.dossier, item.name)"
                                       class="!text-white group bg-primary hover:bg-secondary !border-none transition duration-300">
                                 <font-awesome-icon class="me-0"
                                                    icon="fa-solid group-hover:text-white transition-all duration-300 fa-download"/>

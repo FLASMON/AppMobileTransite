@@ -3,6 +3,8 @@ import {ref} from "vue";
 import NavireDetailsModal from "../Modal/NavireDetailsModal.vue";
 import axiosInstance from "../../config/AxiosInstance.js";
 import pathAPI from "../../utils/pathAPI/pathAPI.js";
+import {useI18n} from 'vue-i18n';
+const {t} = useI18n();
 
 const isModalVisible = ref(false);
 const selectedCardNavire = ref(null);
@@ -63,7 +65,7 @@ const handleModalClose = ()=> {
         </a-card-meta>
         <div class="px-6 pb-8">
             <a-divider orientation="left" orientation-margin="0" class="!my-4">
-                <span class="text-primary font-normal">Numéro BL</span>
+                <span class="text-primary font-normal">{{t('navire.numero_bl')}}</span>
             </a-divider>
             <div class="flex flex-wrap gap-2">
                 <div

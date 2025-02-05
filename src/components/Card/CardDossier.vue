@@ -1,4 +1,6 @@
 <script setup>
+import {useI18n} from 'vue-i18n';
+const {t} = useI18n();
 
 defineProps({
     statut: {
@@ -27,15 +29,15 @@ defineProps({
         <a-card-meta class="w-full p-8">
             <template #title>
                 <div class="flex items-center justify-between text-white mb-2">
-                    <a-tag color="#FEBA03" class="text-base uppercase">{{ statut== 1 ? 'cloturer' : 'en cours' }}</a-tag>
+                    <a-tag color="#FEBA03" class="text-base uppercase">{{ statut== 1 ?   t('filtre.cloturer') : t('filtre.en_cours') }}</a-tag>
                     <span class="text-lg">{{ date }}</span>
                 </div>
                 <div class="flex justify-between flex-wrap">
-                    <span class="text-white text-base font-normal">Numéro BL</span>
+                    <span class="text-white text-base font-normal">{{ t('dossier.numero_bl')}}</span>
                     <span class="text-lg text-yellow uppercase font-normal">{{ blNumbers }}</span>
                 </div>
                 <div class="flex justify-between flex-wrap">
-                    <span class="text-white text-base font-normal">Navire</span>
+                    <span class="text-white text-base font-normal">{{ t('dossier.navire')}}</span>
                     <span class="text-lg text-yellow font-normal uppercase">{{ nomNavire }}</span>
                 </div>
             </template>
