@@ -18,7 +18,11 @@ const startScanner = () => {
         "qr-code-scanner",
         {
             fps: 10,
-            qrbox: 250, // Taille de la boîte de scan
+            qrbox: 550, // Taille de la boîte de scan
+            buttonId: "start-buttonbbbbb",
+            buttonStopId: "stop-buttonbbbb",
+            buttonStartText: "Démarrer le scan",
+            buttonStopText: "Arrêter le scan",
         },
         false
     );
@@ -97,7 +101,6 @@ onMounted(() => {
 <style scoped >
 #qr-code-scanner {
     width: 100%;
-    max-width: 400px;
     margin: 0 auto;
 }
 </style>

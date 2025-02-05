@@ -1,8 +1,18 @@
 <script setup>
+import {computed} from "vue";
 import {useRouter} from 'vue-router';
 import {MENUS_DATA} from "./menu-data.js";
+import {useI18n} from 'vue-i18n';
 
+const {t} = useI18n();
 const router = useRouter();
+
+const translatedMenus = computed(() => {
+    return MENUS_DATA.map(menu => ({
+        ...menu,
+        title: t(`menu.${menu.key.toLowerCase()}`)
+    }));
+});
 
 const MenuClick = ({key}) => {
     router.push({name: key});
@@ -12,7 +22,7 @@ const MenuClick = ({key}) => {
 <template>
     <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
         <a-card
-            v-for="(item, index) in MENUS_DATA"
+            v-for="(item, index) in translatedMenus"
             :key="index"
             :bordered="false"
             hoverable

@@ -7,6 +7,9 @@ import DossierDetailsModal from "../components/Modal/DossierDetailsModal.vue";
 import axiosInstance from "../config/AxiosInstance.js";
 import pathAPI from "../utils/pathAPI/pathAPI.js";
 import debounce from "lodash/debounce";
+import {useI18n} from 'vue-i18n';
+const {t} = useI18n();
+
 
 const search = ref('');
 const isModalVisible = ref(false);
@@ -44,12 +47,15 @@ const navires = ref([
 
 const suivie_dossier = ref(null);
 
-async function handleCardClick(id) {
+async function handleCardClick(ouverture_bl_numero) {
 
     try {
-        const response = await axiosInstance.get(pathAPI.dossier.get+'/'+id);
-        suivie_dossier.value = response.data.dossier[0];
-        selectedCardNavire.value = id;
+        var formulaire = new FormData();
+        formulaire.append('numero_bl',ouverture_bl_numero);
+
+        const response = await axiosInstance.post(pathAPI.dossier.getparbl, formulaire);
+        suivie_dossier.value = response.data[0];
+        selectedCardNavire.value = ouverture_bl_numero;
     }catch (e) {
         console.log(e)
     }finally {
@@ -91,7 +97,7 @@ onMounted( () => {
 <template>
     <a-layout class="min-h-screen bg-secondary pt-16">
 
-        <ButtonRetour title="Liste des dossiers"/>
+        <ButtonRetour :title="t('dossier.liste_dossier')"/>
 
         <a-layout-content class="!p-6 max-w-screen-2xl bg-gray-100 mx-auto w-full rounded-t-3xl">
 
@@ -107,7 +113,7 @@ onMounted( () => {
                     activeFilter === '' ? 'bg-emerald-600 hover:bg-emerald-700 text-white' : 'bg-gray-300 hover:bg-gray-400 text-black',
                     'rounded-lg shadow-md'
                      ]">
-                        Tout
+                        {{t('filtre.tout')}}
                 </a-button>
 
                 <!-- Bouton En cours -->
@@ -118,7 +124,7 @@ onMounted( () => {
                     activeFilter === 0 ? 'bg-emerald-600 hover:bg-emerald-700 text-white' : 'bg-gray-300 hover:bg-gray-400 text-black',
                     'rounded-lg shadow-md'
                     ]">
-                    En cours
+                    {{t('filtre.en_cours')}}
                 </a-button>
 
                 <!-- Bouton Clôturer -->
@@ -129,7 +135,7 @@ onMounted( () => {
         activeFilter === 1 ? 'bg-emerald-600 hover:bg-emerald-700 text-white' : 'bg-gray-300 hover:bg-gray-400 text-black',
         'rounded-lg shadow-md'
       ]">
-                    Clôturer
+                    {{t('filtre.cloturer')}}
                 </a-button>
             </div>
 
@@ -140,7 +146,7 @@ onMounted( () => {
                     :date="navire.ouverture_date_arriver_formatted"
                     :bl-numbers="navire.ouverture_bl_numero"
                     :nom-navire="navire.ouverture_navire"
-                    @click="handleCardClick(navire.id)"
+                    @click="handleCardClick(navire.ouverture_bl_numero)"
                     :class="selectedCardNavire === navire.id ? 'border-amber-200 shadow-lg' : ''"
                     statut=""/>
             </div>

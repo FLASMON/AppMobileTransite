@@ -1,0 +1,67 @@
+{
+  "menu": {
+    "deconnexion": "Logout",
+    "langue_fr": "French",
+    "langue_en": "English",
+    "menu_application": "Application Menu",
+    "texte_menu": "Quickly access all your apps and features for efficient project management",
+    "dossier": "Folder",
+    "navire": "Ship",
+    "suivie": "Tracking",
+    "scan_qr": "Scan QR",
+    "user": "User"
+  },
+  "filtre": {
+    "search": "Search",
+    "tout": "All",
+    "en_cours": "In Progress",
+    "cloturer": "Closed"
+  },
+  "dossier": {
+    "numero_bl": "BL Number",
+    "navire": "Ship",
+    "liste_dossier": "Dossier List"
+  },
+  "dossier_detail": {
+    "list_document": "List of Documents",
+    "telecharger_tout": "Download all files as ZIP",
+    "telecharger": "Download",
+    "suivie_document": "Document Tracking"
+  },
+  "navire": {
+    "list_navire": "Ship List",
+    "numero_bl": "BL Number"
+  },
+  "article": {
+    "list_article": "Article List",
+    "marque": "Brand",
+    "code_article": "Article Code",
+    "qte": "Quantity",
+    "qte_restant": "Remaining Quantity",
+    "entrepot": "Warehouse"
+  },
+  "suivie": {
+    "list_suivie_enlevement": "Tracking List of Removals",
+    "detail_navire": "Ship Details",
+    "voyage": "Voyage",
+    "heure_depart": "Departure Time",
+    "heure_dechargement": "Unloading Time",
+    "num_bl": "B/L Number",
+    "transporteur": "Transporter",
+    "chauffeur": "Driver",
+    "num_chauffeur": "Driver Number",
+    "permis": "License",
+    "num_camion": "Truck Number",
+    "num_remorque": "Trailer Number",
+    "destination": "Destination",
+    "delivery_time": "Delivery Time",
+    "liste_article": "Article List",
+    "bill_of_lading": "Bill of Lading",
+    "num_declaration": "Declaration Number",
+    "be": "BE",
+    "marque": "Brand",
+    "qte_d_t": "Qty D/T",
+    "nbre_sac": "Number of Bags",
+    "nbre_big_bag": "Number of Big Bags"
+  }
+}

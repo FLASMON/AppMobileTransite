@@ -11,6 +11,9 @@ import pathAPI from "../utils/pathAPI/pathAPI.js";
 const search = ref('');
 const isModalVisible = ref(false);
 const selectedCardNavire = ref(null);
+import {useI18n} from 'vue-i18n';
+const {t} = useI18n();
+
 
 const filtre = ref({
     filter: '',
@@ -70,7 +73,7 @@ onMounted( () => {
 
 <template>
     <a-layout class="min-h-screen bg-secondary pt-16">
-        <ButtonRetour title="Liste Navire"/>
+        <ButtonRetour :title="t('navire.list_navire')"/>
 
 
         <a-layout-content class="!p-6 max-w-screen-2xl bg-gray-100 mx-auto w-full rounded-t-3xl">

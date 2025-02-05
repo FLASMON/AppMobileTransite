@@ -1,5 +1,7 @@
 <script setup>
 import {defineProps} from 'vue';
+import {useI18n} from 'vue-i18n';
+const {t} = useI18n();
 
 const props = defineProps({
     open: {
@@ -28,7 +30,7 @@ const handleClose = () => {
 <template>
     <a-modal
         :open="open"
-        title="Liste Articles"
+        :title="t('article.list_article')"
         @cancel="handleClose"
         :footer="null"
         width="100%"
@@ -39,31 +41,31 @@ const handleClose = () => {
         <div v-for="(item, index) in list_article" :key="index">
             <div class="w-full bg-white p-4 my-3 rounded-lg">
                 <div class="flex justify-between items-center mb-2">
-                    <span class="text-black font-medium">Marque</span>
+                    <span class="text-black font-medium">{{ t('article.marque') }}</span>
                     <span class="text-black-700 text-base">{{ item.reference_article }}</span>
                 </div>
 
                 <div class="flex justify-between items-center mb-2">
-                    <span class="text-black font-medium">Code Article</span>
+                    <span class="text-black font-medium">{{ t('article.code_article') }}</span>
                     <span class="text-orange uppercase">{{ item.hs_code_article }}</span>
                 </div>
 
                 <div class="flex justify-between items-center mb-2">
-                    <span class="text-black font-medium">Quantité</span>
+                    <span class="text-black font-medium">{{ t('article.qte') }}</span>
                     <span class="text-orange text-base">
                         {{ item.qte_article ? item.qte_restant.toLocaleString('fr-FR') : '0' }}
                     </span>
                 </div>
 
                 <div class="flex justify-between items-center mb-2">
-                    <span class="text-black font-medium"> Quantité Restant</span>
+                    <span class="text-black font-medium"> {{ t('article.ate_restant') }}</span>
                     <span class="text-orange text-base">
                         {{ item.qte_restant ? item.qte_restant.toLocaleString('fr-FR') : '0' }}
                     </span>
                 </div>
 
                 <div class="flex justify-between items-center mb-2">
-                    <span class="text-black font-medium">Entrepot</span>
+                    <span class="text-black font-medium">{{ t('article.entrepot') }}</span>
                     <span class="text-orange uppercase">
                         {{ item.nom_entrepot }}
                     </span>

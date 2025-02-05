@@ -1,0 +1,67 @@
+{
+  "menu": {
+    "deconnexion": "Déconnexion",
+    "langue_fr": "Français",
+    "langue_en": "Anglais",
+    "menu_application": "Menu de l'application",
+    "texte_menu" : "Accédez rapidement à toutes vos applications et fonctionnalités pour une gestion efficace de vos projets",
+    "dossier": "Dossier",
+    "navire": "Navire",
+    "suivie": "suivie",
+    "scan_qr": "Scan QR",
+    "user": "Utilisateur"
+  },
+  "filtre": {
+    "search": "Recherche",
+    "tout": "Tout",
+    "en_cours": "En Cours",
+    "cloturer": "Cloturer"
+  },
+  "dossier": {
+    "numero_bl": "Numéro Bl",
+    "navire": "navire",
+    "liste_dossier": "Liste Dossier"
+  },
+  "dossier_detail": {
+    "list_document": "Liste des documents",
+    "telecharger_tout": "Téléchargez tous les fichiers au format ZIP",
+    "telecharger": "Télécharger",
+    "suivie_document": "Suivie des documents"
+  },
+  "navire": {
+    "list_navire": "Liste Navire",
+    "numero_bl": "Numéro Bl"
+  },
+  "article": {
+    "list_article": "Liste Articles",
+    "marque": "Marque",
+    "code_article": "Code Article",
+    "qte": "Quantité",
+    "qte_restant" : "Quantité Restant",
+    "entrepot": "Entrepot"
+  },
+  "suivie": {
+    "list_suivie_enlevement": "Liste des suivies enlèvements",
+    "detail_navire": "Détail Navire",
+    "voyage": "Voyage",
+    "heure_depart": "Heure Départ",
+    "heure_dechargement": "Heure Déchargement",
+    "num_bl": "N° BL",
+    "transporteur": "Transporteur",
+    "chauffeur": "Chauffeur",
+    "num_chauffeur": "N° Chauffeur",
+    "permis": "Permis",
+    "num_camion": "N° Camion",
+    "num_remorque": "N° Remorque",
+    "destination": "Déstination",
+    "delivery_time": "Delivery Time",
+    "liste_article": "Liste Articles",
+    "bill_of_lading": "BILL OF LADING",
+    "num_declaration": "N° Déclration",
+    "be": "BE",
+    "marque": "Marque",
+    "qte_d_t": "Qte D/T",
+    "nbre_sac": "Nbre Sac",
+    "nbre_big_bag": "Nbre Big bag"
+  }
+}
