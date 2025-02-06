@@ -63,5 +63,22 @@
     "qte_d_t": "Qty D/T",
     "nbre_sac": "Number of Bags",
     "nbre_big_bag": "Number of Big Bags"
+  },
+  "user": {
+    "list_user": "User List",
+    "nouveau_user": "New User",
+    "edit": "Edit User",
+    "nom": "Name",
+    "login_client": "Username",
+    "role": "Role",
+    "mdp": "Password",
+    "save": "Save",
+    "msg_delete": "Do you want to delete this item?",
+    "error_nom": "Please enter the name!",
+    "error_login_client": "Please enter the username!",
+    "choix_role": "Please select a role!",
+    "error_mdp": "Please enter your password!"
   }
+
+
 }

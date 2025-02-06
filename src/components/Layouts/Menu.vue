@@ -3,14 +3,23 @@ import {computed} from "vue";
 import {useRouter} from 'vue-router';
 import {MENUS_DATA} from "./menu-data.js";
 import {useI18n} from 'vue-i18n';
+import localstorageService from "@/utils/localstorageService.js";
+
+const role = localstorageService.getRole()
+
 
 const {t} = useI18n();
 const router = useRouter();
 
+
 const translatedMenus = computed(() => {
-    return MENUS_DATA.map(menu => ({
+    const menus = role === "administrateur"
+        ? MENUS_DATA
+        : MENUS_DATA.filter(menu => menu.key === "scan_qr");
+
+    return menus.map(menu => ({
         ...menu,
-        title: t(`menu.${menu.key.toLowerCase()}`)
+        title: t(`menu.${menu.key.toLowerCase()}`) // Traduction dynamique du titre du menu
     }));
 });
 
@@ -36,8 +45,8 @@ const MenuClick = ({key}) => {
                     class="text-secondary text-4xl group-hover:text-white transition-all duration-300"
                 />
                 <span class="text-secondary text-lg group-hover:text-white transition-all duration-300">
-      {{ item.title }}
-    </span>
+                  {{ item.title }}
+                </span>
             </div>
         </a-card>
     </div>

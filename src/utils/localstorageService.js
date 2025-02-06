@@ -39,6 +39,20 @@ class LocalStorageService {
         return item.value;
     }
 
+    static getIDclient() {
+        const data = this.getItem("token_client");
+        return data.id_parent || null;
+    }
+
+    /**
+     * Récupère le rôle du client stocké dans le localStorage.
+     * @returns {string|null} - Retourne le rôle ou `null` si non trouvé.
+     */
+    static getRole() {
+        const data = this.getItem("token_client");
+        return data.role || null;
+    }
+
     /**
      * Supprime une donnée du localStorage.
      * @param {string} key - Clé de la donnée à supprimer.

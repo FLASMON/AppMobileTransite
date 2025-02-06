@@ -8,12 +8,14 @@ import axiosInstance from "../config/AxiosInstance.js";
 import pathAPI from "../utils/pathAPI/pathAPI.js";
 import debounce from "lodash/debounce.js";
 import {useI18n} from 'vue-i18n';
+import localstorageService from "@/utils/localstorageService.js";
 const {t} = useI18n();
 
 const search = ref('');
 const isModalVisible = ref(false);
 const selectedCardNavire = ref(null);
 const elementDetails= ref([]);
+const totalItems = ref(0);
 
 const navires = ref([]);
 
@@ -23,8 +25,8 @@ const filtre = ref({
     date_fin: '',
     sort: 'date_enlevement|asc',
     page: '1',
-    per_page: '20',
-    client_id: JSON.parse(localStorage.getItem('token_client')).value,
+    per_page: '15',
+    client_id: localstorageService.getIDclient(),
 })
 
 
@@ -33,12 +35,17 @@ const fetchAll = async () => {
     try {
         const response = await axiosInstance.get(pathAPI.suivieenlevement.fetchAll, { params: filtre.value });
         navires.value = response.data.data;
+        totalItems.value = response.data.total;
     } catch (e) {
         console.log(e)
     } finally {
 
     }
 }
+const handlePageChange = (page) => {
+    filtre.value.page = page;
+    fetchAll();
+};
 
 async function handleCardClick(id) {
     const link = pathAPI.suivieenlevement.detail+"/"+id
@@ -80,6 +87,16 @@ onMounted(() => {
                     @click="handleCardClick(navire.id)"
                     :class="selectedCardNavire === navire.id ? 'border-amber-200 shadow-lg' : ''"
                     statut=""/>
+            </div>
+
+            <div class="text-center pt-4">
+                <a-pagination
+                    v-model:current="(filtre.page)"
+                    :total="totalItems"
+                    :pageSize="parseInt(filtre.per_page)"
+                    @change="handlePageChange"
+                    show-less-items
+                />
             </div>
 
             <SuiviDetailsModal

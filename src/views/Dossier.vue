@@ -8,9 +8,10 @@ import axiosInstance from "../config/AxiosInstance.js";
 import pathAPI from "../utils/pathAPI/pathAPI.js";
 import debounce from "lodash/debounce";
 import {useI18n} from 'vue-i18n';
+import localstorageService from "@/utils/localstorageService.js";
 const {t} = useI18n();
 
-
+const totalItems = ref(0);
 const search = ref('');
 const isModalVisible = ref(false);
 const selectedCardNavire = ref(null);
@@ -23,11 +24,10 @@ const filtre = ref({
     date_fin: '',
     sort: 'id|asc',
     page: '1',
-    per_page: '20',
-    client_id: JSON.parse(localStorage.getItem('token_client')).value,
+    per_page: '15',
+    client_id: localstorageService.getIDclient(),
     filtre_etat: '',
 })
-
 const navires = ref([
     {
         statut: 'En cours',
@@ -73,6 +73,7 @@ const fetchData= async () => {
         try {
             const response = await axiosInstance.get(pathAPI.dossier.fetchAll, {params: filtre.value});
             navires.value = response.data.data
+            totalItems.value = response.data.total;
         }catch (e) {
             console.log(e)
         }finally {
@@ -87,6 +88,10 @@ const filterByEtat = (etat) => {
 }
 const debouncedFetchNavire = debounce(fetchData, 300);
 
+const handlePageChange = (page) => {
+    filtre.value.page = page;
+    fetchData();
+};
 
 onMounted( () => {
     fetchData();
@@ -149,7 +154,18 @@ onMounted( () => {
                     @click="handleCardClick(navire.ouverture_bl_numero)"
                     :class="selectedCardNavire === navire.id ? 'border-amber-200 shadow-lg' : ''"
                     statut=""/>
+
             </div>
+            <div class="text-center pt-4">
+                <a-pagination
+                    v-model:current="(filtre.page)"
+                    :total="totalItems"
+                    :pageSize="parseInt(filtre.per_page)"
+                    @change="handlePageChange"
+                    show-less-items
+                />
+            </div>
+
             <DossierDetailsModal
                 v-if="selectedCardNavire"
                 :open="isModalVisible"
