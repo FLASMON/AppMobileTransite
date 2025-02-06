@@ -20,6 +20,13 @@ const pathAPI = {
     suivieenlevement: {
         fetchAll: 'suivieenlevement/fetchall',
         detail: 'suivieenlevementdetail/getbysuivieenlevement'
+    },
+    subclient: {
+        fetchAll: 'subclient/fetchall',
+        save: 'subclient/addaction',
+        edit: 'subclient/editaction',
+        get: 'subclient/get',
+        delete: 'subclient/delete'
     }
 }
 

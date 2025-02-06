@@ -63,5 +63,20 @@
     "qte_d_t": "Qte D/T",
     "nbre_sac": "Nbre Sac",
     "nbre_big_bag": "Nbre Big bag"
+  },
+  "user": {
+    "list_user": "Liste des utilisateurs",
+    "nouveau_user": "Nouvel utilisateur",
+    "edit": "Modifier l'utilisateur",
+    "nom": "Nom",
+    "login_client": "Identifiant",
+    "role": "Rôle",
+    "mdp": "Mot de passe",
+    "save": "Enregistrer",
+    "msg_delete": "Voulez-vous supprimer cet élément ?",
+    "error_nom": "Veuillez entrer le nom !",
+    "error_login_client": "Veuillez entrer le login_client !",
+    "choix_role": "Veuillez sélectionner un rôle !",
+    "error_mdp": "Veuillez entrer votre mot de passe !"
   }
 }

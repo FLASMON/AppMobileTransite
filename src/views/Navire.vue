@@ -12,8 +12,9 @@ const search = ref('');
 const isModalVisible = ref(false);
 const selectedCardNavire = ref(null);
 import {useI18n} from 'vue-i18n';
+import localstorageService from "@/utils/localstorageService.js";
 const {t} = useI18n();
-
+const totalItems = ref(0);
 
 const filtre = ref({
     filter: '',
@@ -21,8 +22,8 @@ const filtre = ref({
     date_fin: '',
     sort: 'date_arriver|asc',
     page: '1',
-    per_page: '20',
-    client_id: JSON.parse(localStorage.getItem('token_client')).value,
+    per_page: '15',
+    client_id: localstorageService.getIDclient(),
 })
 const navires = ref([
     {
@@ -38,12 +39,7 @@ const fetchNavire = async () => {
     try {
         const response = await axiosInstance.get(pathAPI.navirebl.fetchAll, { params: filtre.value });
         navires.value = response.data.data;
-        // navires.value = response.data.data.map(item => ({
-        //     title: 'navire',
-        //     name: (item.nom_navire),
-        //     date: (item.date_arriver_formatted),
-        //     blNumbers: item.bl_details ? item.bl_details.split(';') : [],
-        // }));
+        totalItems.value = response.data.total;
 
     } catch (e) {
        console.log(e)
@@ -64,6 +60,10 @@ function handleModalClose() {
 
 const debouncedFetchNavire = debounce(fetchNavire, 300);
 
+const handlePageChange = (page) => {
+    filtre.value.page = page;
+    fetchNavire();
+};
 
 onMounted( () => {
     fetchNavire();
@@ -91,6 +91,15 @@ onMounted( () => {
                     :date="navire.date"
                     :bl-numbers="navire.bl_details"
                     :class="selectedCardNavire === navire.name ? 'border-blue-500 shadow-lg' : ''"
+                />
+            </div>
+            <div class="text-center pt-4">
+                <a-pagination
+                    v-model:current="(filtre.page)"
+                    :total="totalItems"
+                    :pageSize="parseInt(filtre.per_page)"
+                    @change="handlePageChange"
+                    show-less-items
                 />
             </div>
 
