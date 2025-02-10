@@ -19,7 +19,8 @@ const pathAPI = {
     },
     suivieenlevement: {
         fetchAll: 'suivieenlevement/fetchall',
-        detail: 'suivieenlevementdetail/getbysuivieenlevement'
+        detail: 'suivieenlevementdetail/getbysuivieenlevement',
+        onUnloaded: 'suivieenlevementdetail/dechargement'
     },
     subclient: {
         fetchAll: 'subclient/fetchall',
@@ -27,6 +28,11 @@ const pathAPI = {
         edit: 'subclient/editaction',
         get: 'subclient/get',
         delete: 'subclient/delete'
+    },
+    tableaubord: {
+        fetchAll: '/suivieenlevementdetail/tableaubord',
+        entrepot: '/suivieenlevementdetail/fetchdistinctentrepot',
+        navire: '/suivieenlevementdetail/fetchnavire'
     }
 }
 

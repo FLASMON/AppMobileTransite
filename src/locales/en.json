@@ -9,7 +9,8 @@
     "navire": "Ship",
     "suivie": "Tracking",
     "scan_qr": "Scan QR",
-    "user": "User"
+    "user": "User",
+    "tableau_bord": "Dashboard"
   },
   "filtre": {
     "search": "Search",
@@ -62,7 +63,10 @@
     "marque": "Brand",
     "qte_d_t": "Qty D/T",
     "nbre_sac": "Number of Bags",
-    "nbre_big_bag": "Number of Big Bags"
+    "nbre_big_bag": "Number of Big Bags",
+    "dechargement_entrepot": "Storage Location",
+    "decharge": "Unloaded",
+    "error_dechargement": "The field is required!"
   },
   "user": {
     "list_user": "User List",
@@ -78,7 +82,26 @@
     "error_login_client": "Please enter the username!",
     "choix_role": "Please select a role!",
     "error_mdp": "Please enter your password!"
+  },
+  "tableau_bord": {
+    "tableau_bord": "Dashboard",
+    "filtrer_par": "Filter By",
+    "recherche": "Search",
+    "reset_filtre": "Reset",
+    "du": "From",
+    "au": "To",
+    "entrepot": "Choose a Warehouse",
+    "navire": "Choose a Ship",
+    "tab_date": "Date",
+    "tab_navire": "Ship",
+    "bol": "Bill of Lading",
+    "num_declration": "Declaration No.",
+    "tab_entrepot": "Warehouse",
+    "marque": "Brand",
+    "qte_initiial": "Initial Qty",
+    "qte_sortie": "Released Qty",
+    "nbre_sac": "Number of Bags",
+    "nbre_bb": "Number of Big Bags",
+    "qte_restant": "Remaining Qty"
   }
-
-
 }

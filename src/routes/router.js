@@ -7,6 +7,7 @@ import Main from "../components/Main.vue";
 import Navire from "../views/Navire.vue";
 import Login from "../views/Login.vue";
 import User from "../views/User.vue";
+import TableauBord from "../views/TableauBord.vue";
 
 const routes = [
     {
@@ -31,6 +32,12 @@ const routes = [
         name: 'Dossier',
         meta: { key: 'Dossier', requiresAuth: true },
         component: Dossier,
+    },
+    {
+        path: '/tableau_bord',
+        name: 'Tableau_bord',
+        meta: { key: 'Tableau_bord', requiresAuth: true },
+        component: TableauBord,
     },
     {
         path: '/suivie',

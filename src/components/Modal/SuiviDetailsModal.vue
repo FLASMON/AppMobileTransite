@@ -1,7 +1,22 @@
 <script setup>
 import {defineProps, ref, watch} from 'vue';
 import {useI18n} from 'vue-i18n';
+import localstorageService from "@/utils/localstorageService.js";
+import pathAPI from "@/utils/pathAPI/pathAPI.js";
+import axiosInstance from "@/config/AxiosInstance.js";
+import toast from "@/utils/toast.js";
 const {t} = useI18n();
+
+
+const isModalVisible = ref(false);
+const modalWidth= ref('520px');
+const temp_index = ref(0);
+
+const crudForm = ref({
+    id: '',
+    delivery_time: '',
+    dechargement_entrepot: ''
+});
 
 
 const props = defineProps({
@@ -62,6 +77,32 @@ const menuItems = ref([
         ]
     }
 ]);
+
+const onSave = async () => {
+    const formulaire = new FormData();
+    formulaire.append('id', crudForm.value.id);
+    formulaire.append('delivery_time', crudForm.value.delivery_time);
+    formulaire.append('dechargement_entrepot', crudForm.value.dechargement_entrepot);
+
+    const link = pathAPI.suivieenlevement.onUnloaded;
+    const response = await axiosInstance.post(link, formulaire);
+    if (response.data.error == ''){
+        toast.showToast({msg: response.data.message, duration: 3, type: 'success'});
+        props.elements[temp_index.value] = response.data.element[0];
+        isModalVisible.value = false;
+    }else{
+        toast.showToast({msg: response.data.error, duration: 3, type: 'warning'})
+    }
+}
+const toggle = async (item, index)=> {
+    crudForm.value = {
+        id: item.id,
+        delivery_time: '',
+        dechargement_entrepot: item.dechargement_entrepot,
+    }
+    isModalVisible.value = true;
+    temp_index.value = index;
+}
 </script>
 
 <template>
@@ -76,7 +117,20 @@ const menuItems = ref([
     >
 
         <div v-for="(item, index) in elements" :key="index">
+
             <div class="w-full bg-white p-4 my-3 rounded-lg">
+                <a-button
+                    @click="toggle(item, index)"
+                    :class="[
+                        'flex items-center space-x-2 transition-all ',
+                        item.delivery_time != '' ? 'bg-secondary text-white hover:!bg-secondary' : 'bg-gray-200 text-black hover:!bg-gray-200'
+                    ]"
+                >
+                    <span>{{ t('suivie.decharge') }}</span>
+                    <span v-show="item.delivery_time != ''">
+                        <font-awesome-icon icon="fa-solid fa-check" class="!me-0"/>
+                    </span>
+                </a-button>
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-black font-medium">{{t('suivie.voyage')}}</span>
                     <span class="text-white text-2xl font-bold bg-secondary px-2 py-1 rounded-tl-2xl">{{
@@ -139,60 +193,102 @@ const menuItems = ref([
                     <span class="text-orange">{{ item.delivery_time }}</span>
                 </div>
 
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-black font-medium">{{t('suivie.dechargement_entrepot')}}</span>
+                    <span class="text-orange">{{ item.dechargement_entrepot }}</span>
+                </div>
+
                 <a-divider orientation="center">
                     <span class="text-secondary font-medium uppercase">{{t('suivie.liste_article')}}</span>
                 </a-divider>
-
                 <perfect-scrollbar class="h-full w-full pt-2 pb-4 px-2 overflow-hidden bg-blue-50 rounded-md">
                     <div class="flex gap-1 whitespace-nowrap w-full">
                         <table class="w-full min-w-full border-collapse border border-gray-300">
                             <thead>
-                                <tr class="bg-gray-100">
-                                   <th class="border border-gray-300 px-3 py-2 text-left"> {{t('suivie.bill_of_lading')}}</th>
-                                    <th class="border border-gray-300 px-3 py-2 text-left">{{t('suivie.num_declaration')}}</th>
-                                    <th class="border border-gray-300 px-3 py-2 text-left">{{t('suivie.be')}}</th>
-                                    <th class="border border-gray-300 px-3 py-2 text-left">{{t('suivie.marque')}}</th>
-                                    <th class="border border-gray-300 px-3 py-2 text-left">
-                                        {{t('suivie.qte_d_t')}}
-                                    </th>
-                                    <th class="border border-gray-300 px-3 py-2 text-left">
-                                        {{t('suivie.nbre_sac')}}
-                                    </th>
-                                    <th class="border border-gray-300 px-3 py-2 text-left">
-                                        {{t('suivie.nbre_big_bag')}}
-                                    </th>
-                                </tr>
+                            <tr class="bg-gray-100">
+                                <th class="border border-gray-300 px-3 py-2 text-left"> {{t('suivie.bill_of_lading')}}</th>
+                                <th class="border border-gray-300 px-3 py-2 text-left">{{t('suivie.num_declaration')}}</th>
+                                <th class="border border-gray-300 px-3 py-2 text-left">{{t('suivie.be')}}</th>
+                                <th class="border border-gray-300 px-3 py-2 text-left">{{t('suivie.marque')}}</th>
+                                <th class="border border-gray-300 px-3 py-2 text-left">
+                                    {{t('suivie.qte_d_t')}}
+                                </th>
+                                <th class="border border-gray-300 px-3 py-2 text-left">
+                                    {{t('suivie.nbre_sac')}}
+                                </th>
+                                <th class="border border-gray-300 px-3 py-2 text-left">
+                                    {{t('suivie.nbre_big_bag')}}
+                                </th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(d, index_dt) in item.details" :key="index_dt">
-                                    <td class="border border-gray-300 px-3 py-2 text-left">
-                                        {{d.num_bl}}
-                                    </td>
-                                    <td class="border border-gray-300 px-3 py-2 text-left">
-                                        {{d.num_ivoice}}
-                                    </td >
-                                    <td class="border border-gray-300 px-3 py-2 text-left">
-                                        {{d.be}}
-                                    </td>
-                                    <td class="border border-gray-300 px-3 py-2 text-left">
-                                        {{d.reference_article}}
-                                    </td>
-                                    <td class="border border-gray-300 px-3 py-2 text-center">
-                                        {{d.qte_t}}
-                                    </td>
-                                    <td class="border border-gray-300 px-3 py-2 text-center">
-                                        {{d.nbre_sac}}
-                                    </td>
-                                    <td class="border border-gray-300 px-3 py-2 text-center">
-                                        {{d.nbre_big_bag}}
-                                    </td>
-                                </tr>
+                            <tr v-for="(d, index_dt) in item.details" :key="index_dt">
+                                <td class="border border-gray-300 px-3 py-2 text-left">
+                                    {{d.num_bl}}
+                                </td>
+                                <td class="border border-gray-300 px-3 py-2 text-left">
+                                    {{d.num_ivoice}}
+                                </td >
+                                <td class="border border-gray-300 px-3 py-2 text-left">
+                                    {{d.be}}
+                                </td>
+                                <td class="border border-gray-300 px-3 py-2 text-left">
+                                    {{d.reference_article}}
+                                </td>
+                                <td class="border border-gray-300 px-3 py-2 text-center">
+                                    {{d.qte_t}}
+                                </td>
+                                <td class="border border-gray-300 px-3 py-2 text-center">
+                                    {{d.nbre_sac}}
+                                </td>
+                                <td class="border border-gray-300 px-3 py-2 text-center">
+                                    {{d.nbre_big_bag}}
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
                 </perfect-scrollbar>
+
             </div>
         </div>
+    </a-modal>
+
+    <a-modal
+        :open="isModalVisible"
+        :title="t('suivie.decharge')"
+        :width="modalWidth"
+        @cancel="isModalVisible = false"
+        class="modal_detail overflow-hidden"
+        :footer="null"
+
+    >
+        <a-form
+            :model="crudForm"
+            name="basic"
+            layout="vertical"
+            @finish="onSave"
+        >
+
+            <a-form-item
+                :label="t('suivie.dechargement_entrepot')"
+                name="dechargement_entrepot"
+                :rules="[{ required: true, message: t('suivie.error_dechargement') }]"
+            >
+                <a-input v-model:value="crudForm.dechargement_entrepot" placeholder="" />
+            </a-form-item>
+
+            <!-- Bouton de soumission -->
+            <a-form-item>
+                <a-button
+                    type="primary"
+                    html-type="submit"
+                    class="w-full bg-secondary hover:!bg-primary text-white"
+                >
+                    {{t('user.save')}}
+                </a-button>
+            </a-form-item>
+        </a-form>
     </a-modal>
 </template>
 

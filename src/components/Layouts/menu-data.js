@@ -1,5 +1,6 @@
 
 export const MENUS_DATA = [
+    { key: "Tableau_bord", title: "Tableau de bord", icon: "fa-solid fa-table-columns", color: "bg-white" },
     { key: "Dossier", title: "Dossier", icon: "fa-solid fa-folder", color: "bg-white" },
     { key: "Navire", title: "Navire", icon: "fa-solid fa-ship", color: "bg-white" },
     { key: "Suivie", title: "Suivi", icon: "fa-solid fa-truck", color: "bg-white" },
