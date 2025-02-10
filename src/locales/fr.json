@@ -9,7 +9,8 @@
     "navire": "Navire",
     "suivie": "suivie",
     "scan_qr": "Scan QR",
-    "user": "Utilisateur"
+    "user": "Utilisateur",
+    "tableau_bord": "Tableau de Bord"
   },
   "filtre": {
     "search": "Recherche",
@@ -62,7 +63,10 @@
     "marque": "Marque",
     "qte_d_t": "Qte D/T",
     "nbre_sac": "Nbre Sac",
-    "nbre_big_bag": "Nbre Big bag"
+    "nbre_big_bag": "Nbre Big bag",
+    "dechargement_entrepot": "Lieu de stockage",
+    "decharge" : "Déchargé",
+    "error_dechargement": "Le champ est requis"
   },
   "user": {
     "list_user": "Liste des utilisateurs",
@@ -78,5 +82,26 @@
     "error_login_client": "Veuillez entrer le login_client !",
     "choix_role": "Veuillez sélectionner un rôle !",
     "error_mdp": "Veuillez entrer votre mot de passe !"
+  },
+  "tableau_bord": {
+    "tableau_bord": "Tableau de bord",
+    "filtrer_par": "Filtrer par",
+    "recherche": "Recherche",
+    "reset_filtre": "Réinitialiser",
+    "du": "Du",
+    "au": "Au",
+    "entrepot": "Choisir un Entrepôt",
+    "navire": "Choisir un Navire",
+    "tab_date": "Date",
+    "tab_navire": "Navire",
+    "bol": "Bill of Lading",
+    "num_declration" : "N° Déclration",
+    "tab_entrepot": "Entrepôt",
+    "marque": "Marque",
+    "qte_initiial": "Qte I",
+    "qte_sortie": "Qte Sortie",
+    "nbre_sac": "Nbre Sac",
+    "nbre_bb": "Nbre BB",
+    "qte_restant": "Qte Restant"
   }
 }

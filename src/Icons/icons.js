@@ -19,7 +19,10 @@ import {
     faBars, faSignOutAlt,
     faUser,
     faEdit,
-    faTrash
+    faTrash,
+    faCheck,
+    faTableColumns,
+    faFilter
 } from "@fortawesome/free-solid-svg-icons";
 
 import {} from '@fortawesome/free-brands-svg-icons';
@@ -45,5 +48,8 @@ library.add(
     faUser,
     faSignOutAlt,
     faEdit,
-    faTrash
+    faTrash,
+    faCheck,
+    faTableColumns,
+    faFilter
 );

@@ -15,7 +15,7 @@ const router = useRouter();
 const translatedMenus = computed(() => {
     const menus = role === "administrateur"
         ? MENUS_DATA
-        : MENUS_DATA.filter(menu => menu.key === "scan_qr");
+        : MENUS_DATA.filter(menu => (menu.key === "scan_qr" || menu.key ==='Suivie'));
 
     return menus.map(menu => ({
         ...menu,
