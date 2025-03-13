@@ -25,6 +25,8 @@ const filtre = ref({
     sort: 'id|asc',
     page: '1',
     per_page: '20',
+    bill_of_lading: '',
+    num_declration: '',
 });
 
 
@@ -56,6 +58,8 @@ const onSearch = (data)=> {
     filtre.value.date_fins = data.toDate;
     filtre.value.id_navire = data.ship;
     filtre.value.nom_entrepot = data.warehouse;
+    filtre.value.bill_of_lading = data.bill_of_lading;
+    filtre.value.num_declration = data.num_declration;
 
     closeModal();
     fetchData();

@@ -201,54 +201,7 @@ const toggle = async (item, index)=> {
                 <a-divider orientation="center">
                     <span class="text-secondary font-medium uppercase">{{t('suivie.liste_article')}}</span>
                 </a-divider>
-                <perfect-scrollbar class="h-full w-full pt-2 pb-4 px-2 overflow-hidden bg-blue-50 rounded-md">
-                    <div class="flex gap-1 whitespace-nowrap w-full">
-                        <table class="w-full min-w-full border-collapse border border-gray-300">
-                            <thead>
-                            <tr class="bg-gray-100">
-                                <th class="border border-gray-300 px-3 py-2 text-left"> {{t('suivie.bill_of_lading')}}</th>
-                                <th class="border border-gray-300 px-3 py-2 text-left">{{t('suivie.num_declaration')}}</th>
-                                <th class="border border-gray-300 px-3 py-2 text-left">{{t('suivie.be')}}</th>
-                                <th class="border border-gray-300 px-3 py-2 text-left">{{t('suivie.marque')}}</th>
-                                <th class="border border-gray-300 px-3 py-2 text-left">
-                                    {{t('suivie.qte_d_t')}}
-                                </th>
-                                <th class="border border-gray-300 px-3 py-2 text-left">
-                                    {{t('suivie.nbre_sac')}}
-                                </th>
-                                <th class="border border-gray-300 px-3 py-2 text-left">
-                                    {{t('suivie.nbre_big_bag')}}
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr v-for="(d, index_dt) in item.details" :key="index_dt">
-                                <td class="border border-gray-300 px-3 py-2 text-left">
-                                    {{d.num_bl}}
-                                </td>
-                                <td class="border border-gray-300 px-3 py-2 text-left">
-                                    {{d.num_ivoice}}
-                                </td >
-                                <td class="border border-gray-300 px-3 py-2 text-left">
-                                    {{d.be}}
-                                </td>
-                                <td class="border border-gray-300 px-3 py-2 text-left">
-                                    {{d.reference_article}}
-                                </td>
-                                <td class="border border-gray-300 px-3 py-2 text-center">
-                                    {{d.qte_t}}
-                                </td>
-                                <td class="border border-gray-300 px-3 py-2 text-center">
-                                    {{d.nbre_sac}}
-                                </td>
-                                <td class="border border-gray-300 px-3 py-2 text-center">
-                                    {{d.nbre_big_bag}}
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </perfect-scrollbar>
+                su
 
             </div>
         </div>

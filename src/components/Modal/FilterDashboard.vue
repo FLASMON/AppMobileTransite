@@ -16,6 +16,26 @@ const props = defineProps({
     titre: {
         type: String,
         required: true,
+    },
+    show_magasin: {
+        type: Boolean,
+        required: false,
+        default: true,
+    },
+    show_navire: {
+        type: Boolean,
+        required: false,
+        default: true,
+    },
+    show_bl: {
+        type: Boolean,
+        required: false,
+        default: true,
+    },
+    show_declaration: {
+        type: Boolean,
+        required: false,
+        default: true,
     }
 });
 
@@ -36,7 +56,9 @@ const filters = ref({
     fromDate: new Date().toISOString().split('T')[0],
     toDate: new Date().toISOString().split('T')[0],
     ship: 0,
-    warehouse: ''
+    warehouse: '',
+    bill_of_lading: '',
+    num_declration: '',
 });
 
 const emit = defineEmits(['close', 'onSearch']);
@@ -89,8 +111,35 @@ onMounted(() => {
                 <a-date-picker v-model:value="filters.toDate" format="DD/MM/YYYY" value-format="YYYY-MM-DD"  class="w-full text-center"/>
             </a-form-item>
 
-            <!-- Sélection "Choix navire" -->
+
             <a-form-item class="flex flex-col">
+                <label class="font-medium mb-1">{{t('tableau_bord.bol')}}</label>
+                <a-input
+                    size="large"
+                    type="default"
+                    v-model:value="filters.bill_of_lading"
+                    :placeholder="t('tableau_bord.bol')"
+                    class="px-5 w-full text-center"
+                >
+
+                </a-input>
+            </a-form-item>
+
+            <a-form-item class="flex flex-col">
+                <label class="font-medium mb-1">{{t('tableau_bord.num_declration')}}</label>
+                <a-input
+                    size="large"
+                    type="default"
+                    v-model:value="filters.num_declration"
+                    :placeholder="t('tableau_bord.num_declration')"
+                    class="px-5 w-full text-center"
+                >
+
+                </a-input>
+            </a-form-item>
+
+            <!-- Sélection "Choix navire" -->
+            <a-form-item class="flex flex-col" v-show="show_navire">
                 <label class="font-medium mb-1">{{t('tableau_bord.navire')}}</label>
                 <a-select v-model:value="filters.ship" :placeholder="t('tableau_bord.navire')" class="w-full text-center">
                     <a-select-option v-for="(n, index) in navires" :value="n.id" :key="index"> {{n.nom_navire}}</a-select-option>
@@ -99,7 +148,7 @@ onMounted(() => {
             </a-form-item>
 
             <!-- Sélection "Entrepôt" -->
-            <a-form-item class="flex flex-col">
+            <a-form-item class="flex flex-col" v-show="show_magasin">
                 <label class="font-medium mb-1">{{t('tableau_bord.entrepot')}}</label>
                 <a-select v-model:value="filters.warehouse" :placeholder="t('tableau_bord.entrepot')" class="w-full text-center">
                     <a-select-option v-for="(n, index) in entrepots" :value="n.nom_entrepot" :key="index"> {{n.nom_entrepot}}</a-select-option>
