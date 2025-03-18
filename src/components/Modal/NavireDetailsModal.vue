@@ -53,12 +53,12 @@ const handleClose = () => {
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-black font-medium">{{ t('article.qte') }}</span>
                     <span class="text-orange text-base">
-                        {{ item.qte_article ? item.qte_restant.toLocaleString('fr-FR') : '0' }}
+                        {{ item.qte_article ? item.qte_article.toLocaleString('fr-FR') : '0' }}
                     </span>
                 </div>
 
                 <div class="flex justify-between items-center mb-2">
-                    <span class="text-black font-medium"> {{ t('article.ate_restant') }}</span>
+                    <span class="text-black font-medium"> {{ t('article.qte_restant') }}</span>
                     <span class="text-orange text-base">
                         {{ item.qte_restant ? item.qte_restant.toLocaleString('fr-FR') : '0' }}
                     </span>
