@@ -195,13 +195,13 @@ const toggle = async (item, index)=> {
 
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-black font-medium">{{t('suivie.dechargement_entrepot')}}</span>
-                    <span class="text-orange">{{ item.dechargement_entrepot }}</span>
+                    <span class="text-orange"> {{ item.dechargement_entrepot }}</span>
                 </div>
 
                 <a-divider orientation="center">
                     <span class="text-secondary font-medium uppercase">{{t('suivie.liste_article')}}</span>
                 </a-divider>
-                su
+
 
             </div>
         </div>
