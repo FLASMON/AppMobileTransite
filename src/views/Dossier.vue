@@ -151,6 +151,7 @@ onMounted( () => {
                     :date="navire.ouverture_date_arriver_formatted"
                     :bl-numbers="navire.ouverture_bl_numero"
                     :nom-navire="navire.ouverture_navire"
+                    :info_navire="navire"
                     @click="handleCardClick(navire.ouverture_bl_numero)"
                     :class="selectedCardNavire === navire.id ? 'border-amber-200 shadow-lg' : ''"
                     statut=""/>

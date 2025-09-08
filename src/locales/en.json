@@ -21,7 +21,13 @@
   "dossier": {
     "numero_bl": "BL Number",
     "navire": "Ship",
-    "liste_dossier": "Dossier List"
+    "liste_dossier": "Dossier List",
+    "num_repertoire": "Registry Number",
+    "marchandise": "Merchandise",
+    "date_arrivee": "Arrival Date",
+    "date_creation": "Creation Date",
+    "nbre_conteneur": "No.Containers",
+    "numero_declration": "Declaration"
   },
   "dossier_detail": {
     "list_document": "List of Documents",

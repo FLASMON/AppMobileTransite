@@ -19,6 +19,10 @@ defineProps({
         type: String,
         required: true
     },
+    info_navire: {
+        type: Object,
+        required: true
+    }
 });
 
 </script>
@@ -33,6 +37,10 @@ defineProps({
                     <span class="text-lg">{{ date }}</span>
                 </div>
                 <div class="flex justify-between flex-wrap">
+                    <span class="text-white text-base font-normal">{{ t('dossier.num_repertoire')}}</span>
+                    <span class="text-lg text-yellow uppercase font-normal">{{ info_navire.numero_repertoire }}</span>
+                </div>
+                <div class="flex justify-between flex-wrap">
                     <span class="text-white text-base font-normal">{{ t('dossier.numero_bl')}}</span>
                     <span class="text-lg text-yellow uppercase font-normal">{{ blNumbers }}</span>
                 </div>
@@ -40,6 +48,24 @@ defineProps({
                     <span class="text-white text-base font-normal">{{ t('dossier.navire')}}</span>
                     <span class="text-lg text-yellow font-normal uppercase">{{ nomNavire }}</span>
                 </div>
+
+                <div class="flex justify-between flex-wrap">
+                    <span class="text-white text-base font-normal">{{ t('dossier.marchandise')}}</span>
+                    <span class="text-lg text-yellow uppercase font-normal">{{ info_navire.marchandise }}</span>
+                </div>
+                <div class="flex justify-between flex-wrap">
+                    <span class="text-white text-base font-normal">{{ t('dossier.date_creation')}}</span>
+                    <span class="text-lg text-yellow uppercase font-normal">{{ info_navire.ouverture_date_dossier_formatted }}</span>
+                </div>
+                <div class="flex justify-between flex-wrap">
+                    <span class="text-white text-base font-normal">{{ t('dossier.nbre_conteneur')}}</span>
+                    <span class="text-lg text-yellow uppercase font-normal">{{ info_navire.total_tc }}</span>
+                </div>
+                <div class="flex justify-between flex-wrap">
+                    <span class="text-white text-base font-normal">{{ t('dossier.numero_declration')}}</span>
+                    <span class="text-lg text-yellow uppercase font-normal">{{ info_navire.declaration_declaration }} {{info_navire.declaration_date_formatted ? 'Du '+info_navire.declaration_date_formatted : ''}}</span>
+                </div>
+
             </template>
             <template #description>
                 <a-divider class="!m-0"></a-divider>
