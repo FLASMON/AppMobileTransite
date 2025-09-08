@@ -140,68 +140,105 @@ const toggle = async (item, index)=> {
 
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-black font-medium">{{t('suivie.heure_depart')}}</span>
-                    <span class="text-orange uppercase">{{ item.heure_depart }}</span>
+                    <span :class="[
+                        'uppercase',
+                        item.delivery_time != '' ? 'text-secondary ' : 'text-orange'
+                    ]"
+                    >{{ item.heure_depart }}</span>
                 </div>
 
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-black font-medium">{{t('suivie.heure_dechargement')}}</span>
-                    <span class="text-orange text-base">{{ item.heure_dechargement }}</span>
+                    <span :class="[
+                        'uppercase',
+                        item.delivery_time != '' ? 'text-secondary ' : 'text-orange'
+                    ]">{{ item.heure_dechargement }}</span>
                 </div>
 
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-black font-medium">{{t('suivie.num_bl')}}</span>
-                    <span class="text-orange text-base">{{ item.bl }}</span>
+                    <span :class="[
+                        'uppercase',
+                        item.delivery_time != '' ? 'text-secondary ' : 'text-orange'
+                    ]">{{ item.bl }}</span>
                 </div>
 
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-black font-medium">{{t('suivie.transporteur')}}</span>
-                    <span class="text-orange">{{ item.transporteur }}</span>
+                    <span :class="[
+                        'uppercase',
+                        item.delivery_time != '' ? 'text-secondary ' : 'text-orange'
+                    ]">{{ item.transporteur }}</span>
                 </div>
 
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-black font-medium">{{t('suivie.chauffeur')}}</span>
-                    <span class="text-orange">{{ item.nom_chauffeur }}</span>
+                    <span :class="[
+                        'uppercase',
+                        item.delivery_time != '' ? 'text-secondary ' : 'text-orange'
+                    ]">{{ item.nom_chauffeur }}</span>
                 </div>
 
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-black font-medium">{{t('suivie.num_chauffeur')}}</span>
-                    <span class="text-orange">{{ item.num_chauffeur }}</span>
+                    <span :class="[
+                        'uppercase',
+                        item.delivery_time != '' ? 'text-secondary ' : 'text-orange'
+                    ]">{{ item.num_chauffeur }}</span>
                 </div>
 
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-black font-medium">{{t('suivie.permis')}}</span>
-                    <span class="text-orange">{{ item.permis }}</span>
+                    <span :class="[
+                        'uppercase',
+                        item.delivery_time != '' ? 'text-secondary ' : 'text-orange'
+                    ]">{{ item.permis }}</span>
                 </div>
 
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-black font-medium">{{t('suivie.num_camion')}}</span>
-                    <span class="text-orange">{{ item.num_camion }}</span>
+                    <span :class="[
+                        'uppercase',
+                        item.delivery_time != '' ? 'text-secondary ' : 'text-orange'
+                    ]">{{ item.num_camion }}</span>
                 </div>
 
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-black font-medium">{{t('suivie.num_remorque')}}</span>
-                    <span class="text-orange">{{ item.num_remorque }}</span>
+                    <span :class="[
+                        'uppercase',
+                        item.delivery_time != '' ? 'text-secondary ' : 'text-orange'
+                    ]">{{ item.num_remorque }}</span>
                 </div>
 
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-black font-medium">{{t('suivie.destination')}}</span>
-                    <span class="text-orange">{{ item.destination }}</span>
+                    <span :class="[
+                        'uppercase',
+                        item.delivery_time != '' ? 'text-secondary ' : 'text-orange'
+                    ]">{{ item.destination }}</span>
                 </div>
 
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-black font-medium">{{t('suivie.delivery_time')}}</span>
-                    <span class="text-orange">{{ item.delivery_time }}</span>
+                    <span :class="[
+                        'uppercase',
+                        item.delivery_time != '' ? 'text-secondary ' : 'text-orange'
+                    ]">{{ item.delivery_time }}</span>
                 </div>
 
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-black font-medium">{{t('suivie.dechargement_entrepot')}}</span>
-                    <span class="text-orange">{{ item.dechargement_entrepot }}</span>
+                    <span :class="[
+                        'uppercase',
+                        item.delivery_time != '' ? 'text-secondary ' : 'text-orange'
+                    ]"> {{ item.dechargement_entrepot }}</span>
                 </div>
 
-                <a-divider orientation="center">
+<!--                <a-divider orientation="center">
                     <span class="text-secondary font-medium uppercase">{{t('suivie.liste_article')}}</span>
-                </a-divider>
-                su
+                </a-divider>-->
+
 
             </div>
         </div>

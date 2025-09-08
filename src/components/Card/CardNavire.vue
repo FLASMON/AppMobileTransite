@@ -33,7 +33,6 @@ const handleCardClick = async (id_dossier) => {
     try {
         const response = await axiosInstance.get(pathAPI.dossier.get+'/'+id_dossier);
         ARTICLES.value = response.data.dossier_article;
-        console.log(ARTICLES.value)
         selectedCardNavire.value = id_dossier;
         isModalVisible.value = true;
 
